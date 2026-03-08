@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ProduPop - Editor de Fluxograma</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2D7CFF",
+                        "background-light": "#FFF9F3",
+                        "background-dark": "#0f1723",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .canvas-grid {
+            background-size: 20px 20px;
+            background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
+        }
+        .dark .canvas-grid {
+            background-image: radial-gradient(circle, #334155 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display dark:text-slate-100 min-h-screen flex flex-col text-[#1D1C1B]">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center bg-primary rounded-lg p-1.5 text-white">
+<span class="material-symbols-outlined">account_tree</span>
+</div>
+<div>
+<h1 class="font-bold leading-tight tracking-tight text-[#1D1C1B]">ProduPop</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Editor de Processos</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="hidden md:flex items-center gap-2 px-4 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-full">
+<span class="material-symbols-outlined text-primary text-sm">edit_note</span>
+<span class="text-sm font-medium">Processo: <span class="text-slate-600 dark:text-slate-300">Admissão de RH</span></span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+<span class="hidden sm:inline">Duplicar</span>
+</button>
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[20px]">save</span>
+<span class="hidden sm:inline">Salvar Rascunho</span>
+</button>
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">publish</span>
+<span>Publicar</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 flex overflow-hidden relative">
+<!-- Sidebar Tools -->
+<aside class="w-16 flex flex-col items-center py-6 gap-6 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-10">
+<div class="flex flex-col gap-2">
+<button class="p-2.5 rounded-xl hover:bg-primary/10 text-slate-600 dark:text-slate-400 hover:text-primary group transition-all" title="Início/Fim (Círculo)">
+<span class="material-symbols-outlined text-[28px] text-[#1D1C1B]">radio_button_unchecked</span>
+</button>
+<button class="p-2.5 rounded-xl bg-primary/10 text-primary group transition-all shadow-sm" title="Etapa (Retângulo)">
+<span class="material-symbols-outlined text-[28px] text-[#1D1C1B]">rectangle</span>
+</button>
+<button class="p-2.5 rounded-xl hover:bg-primary/10 text-slate-600 dark:text-slate-400 hover:text-primary group transition-all" title="Decisão (Losango)">
+<span class="material-symbols-outlined text-[28px] text-[#1D1C1B]">change_history</span>
+</button>
+<button class="p-2.5 rounded-xl hover:bg-primary/10 text-slate-600 dark:text-slate-400 hover:text-primary group transition-all" title="Conector (Seta)">
+<span class="material-symbols-outlined text-[28px] text-[#1D1C1B]">arrow_right_alt</span>
+</button>
+</div>
+<div class="h-[1px] w-8 bg-slate-200 dark:bg-slate-800"></div>
+<button class="p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400" title="Cursor Seleção">
+<span class="material-symbols-outlined text-[28px] text-[#1D1C1B]">near_me</span>
+</button>
+</aside>
+<!-- Canvas Area -->
+<section class="flex-1 canvas-grid bg-background-light dark:bg-background-dark relative overflow-auto p-12">
+<!-- Simulated Flowchart Elements -->
+<div class="absolute top-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-12">
+<!-- Start Node -->
+<div class="w-16 h-16 rounded-full border-2 border-primary bg-white dark:bg-slate-800 flex items-center justify-center shadow-md">
+<span class="text-xs font-bold text-primary">INÍCIO</span>
+</div>
+<!-- Connector -->
+<div class="h-12 w-0.5 bg-primary relative">
+<div class="absolute bottom-0 -left-[5px] border-l-6 border-r-6 border-t-8 border-l-transparent border-r-transparent border-t-primary"></div>
+</div>
+<!-- Step Node (Interactive) -->
+<div class="w-64 p-4 rounded-lg border-2 border-primary bg-white dark:bg-slate-800 shadow-xl cursor-pointer ring-4 ring-primary/20 hover:scale-105 transition-transform">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded uppercase">Etapa</span>
+<span class="material-symbols-outlined text-slate-400 text-sm">settings</span>
+</div>
+<p class="font-bold text-sm">Coleta de Documentos</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Solicitar RG, CPF e Comprovante de Residência.</p>
+</div>
+<!-- Connector -->
+<div class="h-12 w-0.5 bg-slate-300 dark:bg-slate-700 relative">
+<div class="absolute bottom-0 -left-[5px] border-l-6 border-r-6 border-t-8 border-l-transparent border-r-transparent border-t-slate-300 dark:border-t-slate-700"></div>
+</div>
+<!-- Decision Node -->
+<div class="relative w-32 h-32 flex items-center justify-center">
+<div class="absolute inset-0 border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rotate-45 rounded-sm"></div>
+<p class="relative text-xs font-bold text-center px-4 uppercase">Documentos OK?</p>
+</div>
+</div>
+<!-- Zoom Controls -->
+<div class="fixed bottom-8 right-8 flex flex-col gap-2">
+<div class="flex flex-col bg-white dark:bg-slate-900 rounded-lg shadow-lg border border-slate-200 dark:border-slate-800">
+<button class="p-2 border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="p-2 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<button class="p-2 bg-white dark:bg-slate-900 rounded-lg shadow-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+</section>
+<!-- Configuration Modal (Open State) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 md:p-12">
+<div class="bg-white dark:bg-slate-900 w-full max-w-5xl h-full max-h-[85vh] rounded-xl shadow-2xl flex flex-col overflow-hidden">
+<!-- Modal Header -->
+<header class="px-8 py-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">tune</span>
+</div>
+<div>
+<h2 class="text-xl font-bold text-[#1D1C1B]">Configurar Etapa</h2>
+<p class="text-sm text-slate-500">Defina o conteúdo e as regras para esta etapa do processo.</p>
+</div>
+</div>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-400">
+<span class="material-symbols-outlined">close</span>
+</button>
+</header>
+<!-- Modal Tabs -->
+<div class="px-8 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
+<div class="flex gap-8">
+<button class="py-4 border-b-2 border-primary text-primary font-bold text-sm">Conteúdo Instrucional</button>
+<button class="py-4 border-b-2 border-transparent text-slate-500 font-bold text-sm hover:text-slate-700">Checklist</button>
+<button class="py-4 border-b-2 border-transparent text-slate-500 font-bold text-sm hover:text-slate-700">Decisões &amp; Fluxo</button>
+<button class="py-4 border-b-2 border-transparent text-slate-500 font-bold text-sm hover:text-slate-700">Responsáveis</button>
+</div>
+</div>
+<!-- Modal Content Scrollable Area -->
+<div class="flex-1 overflow-y-auto p-8 space-y-10">
+<!-- Instructional Content Section -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold flex items-center gap-2 text-[#1D1C1B]">
+<span class="material-symbols-outlined text-primary">description</span>
+                                Instruções para o Executor
+                            </h3>
+<div class="flex gap-2">
+<button class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200">
+<span class="material-symbols-outlined text-sm">image</span> Adicionar Imagem
+                                </button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200">
+<span class="material-symbols-outlined text-sm">videocam</span> Vídeo
+                                </button>
+</div>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+<!-- Rich Text Placeholder Toolbar -->
+<div class="bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 p-2 flex gap-1">
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded"><span class="material-symbols-outlined text-sm">format_bold</span></button>
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded"><span class="material-symbols-outlined text-sm">format_italic</span></button>
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded"><span class="material-symbols-outlined text-sm">format_list_bulleted</span></button>
+<div class="w-[1px] h-4 bg-slate-300 dark:bg-slate-600 self-center mx-1"></div>
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded"><span class="material-symbols-outlined text-sm">link</span></button>
+</div>
+<textarea class="w-full h-40 p-4 bg-transparent border-none focus:ring-0 text-sm placeholder-slate-400" placeholder="Escreva aqui o passo a passo detalhado para o colaborador..."></textarea>
+</div>
+</section>
+<!-- Checklist Section -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold flex items-center gap-2 text-[#1D1C1B]">
+<span class="material-symbols-outlined text-primary">check_box</span>
+                                Checklist de Verificação
+                            </h3>
+<button class="text-xs font-bold text-primary hover:underline">+ Adicionar Item</button>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg group">
+<span class="material-symbols-outlined text-slate-300">drag_indicator</span>
+<input class="rounded border-slate-300 text-primary" disabled="" type="checkbox"/>
+<input class="flex-1 bg-transparent border-none text-sm p-0 focus:ring-0" type="text" value="Validar veracidade dos documentos originais"/>
+<button class="opacity-0 group-hover:opacity-100 p-1 text-slate-400 hover:text-red-500"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+<div class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg group">
+<span class="material-symbols-outlined text-slate-300">drag_indicator</span>
+<input class="rounded border-slate-300 text-primary" disabled="" type="checkbox"/>
+<input class="flex-1 bg-transparent border-none text-sm p-0 focus:ring-0" type="text" value="Anexar arquivos no sistema ERP corporativo"/>
+<button class="opacity-0 group-hover:opacity-100 p-1 text-slate-400 hover:text-red-500"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+</div>
+</section>
+<!-- Decisions Placeholder Section -->
+<section class="p-6 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50/30 dark:bg-slate-800/10">
+<div class="flex flex-col items-center text-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-4xl">call_split</span>
+<h4 class="font-bold text-sm text-[#1D1C1B]">Caminhos de Saída (Decisões)</h4>
+<p class="text-xs text-slate-500 max-w-sm">Esta etapa possui 2 fluxos de saída. Clique para nomear as decisões que levam ao próximo passo.</p>
+<div class="flex gap-4 mt-4">
+<div class="px-4 py-2 bg-white dark:bg-slate-800 border border-primary/30 rounded-lg flex items-center gap-3">
+<span class="text-xs font-bold text-primary uppercase">Sim</span>
+<span class="material-symbols-outlined text-slate-400 text-sm">arrow_forward</span>
+<span class="text-xs">Aprovar Admissão</span>
+</div>
+<div class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg flex items-center gap-3">
+<span class="text-xs font-bold text-slate-400 uppercase">Não</span>
+<span class="material-symbols-outlined text-slate-400 text-sm">arrow_forward</span>
+<span class="text-xs">Solicitar Correção</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Modal Footer -->
+<footer class="px-8 py-5 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 flex justify-end gap-3">
+<button class="px-6 py-2 text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900">Cancelar</button>
+<button class="px-8 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:opacity-90">Salvar Alterações</button>
+</footer>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ProduPop - Dashboard de Processos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2D7CFF",
+                        "background-light": "#FFF9F3",
+                        "background-dark": "#0f1723",
+                        "brand-text": "#1D1C1B",
+                        "success-green": "#2ECC71",
+                        "warning-yellow": "#FFD166"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display dark:text-slate-100 text-brand-text">
+<div class="flex min-h-screen">
+<!-- Sidebar -->
+<aside class="w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col fixed h-full transition-colors">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-2xl">account_tree</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-lg font-bold leading-none">ProduPop</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium">SaaS de Processos</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary font-semibold" href="#" style="background-color: rgba(45, 124, 255, 0.1);">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<span class="text-sm">Biblioteca de Processos</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">play_circle</span>
+<span class="text-sm">Minhas Execuções</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">report_problem</span>
+<span class="text-sm">Inconsistências</span>
+</div>
+<span class="text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold" style="background-color: #FFD166; color: #1D1C1B;">2</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm">Usuários</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm">Configurações</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3 p-2">
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Foto de perfil do usuário Daniel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu3AECGltJAxSy5Z3UyZAaouiJ00y44BrdrdNvlXU5rQ2jNw8cSS0iTdFh6yj7lYerr2LLGP133EAMfVC3gAwQvifbbg8Yjw2nWt9mIUPvTACPQpYTzBC5clAvrby2X1Cng4omNV8djVSlTd46rgbHohbQHmKRsjC-b42JY7aASflFaCKLAIu5tywuwfEThN6g34OvElfl9xvT4vDhRyNK_t55qDdXOgBpLuA50IS7kIingnBIAYwVpgRTQNPOTjl63MkYKYj5EQEs"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-slate-900 dark:text-white truncate">Daniel Silva</p>
+<p class="text-xs text-slate-500 truncate">daniel@produpop.com</p>
+</div>
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-72 flex-1 p-8 max-w-[1200px]">
+<!-- Header Section -->
+<div class="mb-8">
+<h1 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Olá, Daniel!</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Bem-vindo ao seu painel de controle de processos.</p>
+</div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-2">
+<span class="material-symbols-outlined text-sm">event_note</span>
+<span class="text-sm font-medium">Execuções no Período</span>
+</div>
+<p class="text-3xl font-bold text-slate-900 dark:text-white">14</p>
+<div class="mt-2 text-xs font-medium flex items-center gap-1" style="color: #2ECC71;">
+<span class="material-symbols-outlined text-xs">trending_up</span> +12% vs mês anterior
+                    </div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border-l-4 border border-slate-200 dark:border-slate-800 shadow-sm" style="border-left-color: #FFD166;">
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-2">
+<span class="material-symbols-outlined text-sm" style="color: #FFD166;">warning</span>
+<span class="text-sm font-medium">Processos com Inconsistência</span>
+</div>
+<p class="text-3xl font-bold" style="color: #FFD166;">2</p>
+<div class="mt-2 text-xs text-slate-400 font-medium">Requer atenção imediata</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-2">
+<span class="material-symbols-outlined text-sm">timer</span>
+<span class="text-sm font-medium">Tempo Médio de Execução</span>
+</div>
+<p class="text-3xl font-bold text-slate-900 dark:text-white">22 min</p>
+<div class="mt-2 text-xs font-medium flex items-center gap-1" style="color: #2ECC71;">
+<span class="material-symbols-outlined text-xs">trending_down</span> -5% tempo reduzido
+                    </div>
+</div>
+</div>
+<!-- Quick Action -->
+<div class="mb-10">
+<h2 class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">Ação Rápida</h2>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-3 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-2xl">play_circle</span>
+<span class="text-lg">Continuar Execução: <span class="opacity-80 font-medium">Triagem de Novos Clientes</span></span>
+</button>
+</div>
+<!-- Recent Executions Table -->
+<div>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Execuções Recentes</h2>
+<a class="text-primary text-sm font-semibold hover:underline" href="#">Ver todas</a>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-bottom border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Processo</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Data</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Responsável</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Triagem de Novos Clientes</td>
+<td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">Hoje, 14:20</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700">
+<img class="w-full h-full rounded-full" data-alt="Avatar Daniel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIdBh432XIF6cDWutJpwpZWZWppR_KJEBtb2wQ7vKxGwX_q8cPhffu7KXHUKVre5UARV2pOHJTqm2Mk39MfFe66gB5lLq-gVvuskzilpKOgzlGCRWAjwnYcCeQN-SEZ-KhOJURuPemmFI4LkbpILTHFAa35k_kIBSjcihUTfsqu2DoWMYlE00Df_jhIeEtMvUrg3hx-48g_5zjD5fH0okB9sgIUTzqoM8sLQ4njwIqz4jq-oeMneVAkjK2CV0TMV8hIzHrbpKFQw4K"/>
+</div>
+<span class="text-sm text-slate-700 dark:text-slate-300">Daniel Silva</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">Em andamento</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:text-primary/80">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Onboarding de Parceiro</td>
+<td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">Hoje, 10:15</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700">
+<img class="w-full h-full rounded-full" data-alt="Avatar Ana" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3fofmIxZxo_K_fOK0eRhSimsY9x9ASZBYzGxEkzLbTE4v_LZSxFUID2OlFrmPFC8ah7Lk77ry7dNG0MaJwibEifdtr2Ba3xVAsDoQle8do4p5gPBsg4L5H4b2ZLIcdJ4XIqvDUz30ZaMzWDasBISR7QKS8LFXWYcFhbPcILDUdFwaW9gyDIVmZSWM_37qgp2uyEdrAgBBYQzv8xhRm6RusCcHQaKA0-_hWm9D10YVZpJuOZuXm-R89_Yt32Xi5L0ai5LDug5Vtv1p"/>
+</div>
+<span class="text-sm text-slate-700 dark:text-slate-300">Ana Souza</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-xs font-bold dark:bg-emerald-900/30 dark:text-emerald-400">Concluído</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:text-primary/80">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Faturamento Mensal</td>
+<td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">Ontem, 16:45</td>
+<td class="px-6 py-4 flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700">
+<img class="w-full h-full rounded-full" data-alt="Avatar Marcos" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIaxUzdlm62S_o7GclJ1SxH5y7GZ04gV4tmRG5-m09oRkDfRTNMcFQtpGYw-Dj-aGIqPQcoJw0trDnnpvpMg-FwdYs4IiQCjn1EVcWDoM1Mfmpd25t41aMbb7tcdX_yocDp8xL0cVhDlSLt9k83EarIPJE6yolRN1m6l3SFZusFUwXJcRHZ1epVXBwGzq_B2bJN11UeuJxwglDqWoIJfqRe5nQcmmfXIlXs53mKgnlVNsje3kCy1DCa5ERNTxqi84FWz28pIuHX5_C"/>
+</div>
+<span class="text-sm text-slate-700 dark:text-slate-300">Marcos Lima</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-xs font-bold dark:bg-red-900/30 dark:text-red-400">Reportado</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:text-primary/80">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+</body></html>

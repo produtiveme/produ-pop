@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2D7CFF",
+                        "background-light": "#FFF9F3",
+                        "background-dark": "#0f1723",
+                        "text-main": "#1D1C1B",
+                        "success-green": "#2ECC71",
+                        "warning-yellow": "#FFD166",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display dark:text-slate-100 text-[#1D1C1B]">
+<div class="relative flex min-h-screen flex-col">
+<!-- Header / TopNavBar -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 dark:bg-slate-900 px-6 lg:px-20 py-4 bg-[#FFF9F3]">
+<div class="mx-auto flex max-w-7xl items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white">
+<span class="material-symbols-outlined">account_tree</span>
+</div>
+<h1 class="text-[#1D1C1B]">ProduPop</h1>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-semibold text-primary" href="#">Biblioteca</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Execuções</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Configurações</a>
+</nav>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<button class="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white transition-opacity hover:opacity-90 bg-[#2D7CFF]">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Criar Novo Processo</span>
+</button>
+<div class="h-10 w-10 overflow-hidden rounded-full border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800">
+<img alt="Avatar do usuário" class="h-full w-full object-cover" data-alt="Avatar de um usuário executivo sorridente" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKdixTDYudYUqOL866duvlOlr_q3jpUZcMiVdGzOK_Op9p1ZBXPiMnDQAVOm5yAqJ_UJE4FxX9NZOtmhSDHKZbMLWcE6WV0618nlqDyDzdjgJiT3N2weFCANE0EUqFoCx2rABUeYeZdHabHpeFRDAk3wOxk31S0Fn3TH5hV7ajOVn_dn8FhCr0hYEBcreo4GeZBUF4qMSUGUwC69f11WHHGrTLY38OEFh2ozQRvDcGmP4dyjDazDLy45e1QBlq9itfEqQAdnk0zes9"/>
+</div>
+</div>
+</div>
+</header>
+<main class="mx-auto w-full max-w-7xl flex-1 p-6 lg:px-20 lg:py-10">
+<!-- Section Header -->
+<div class="mb-8 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+<div>
+<h2 class="text-[#1D1C1B]">Biblioteca de Processos</h2>
+<p class="text-slate-500 dark:text-slate-400">Gerencie e execute os fluxos operacionais da sua empresa.</p>
+</div>
+</div>
+<!-- Search and Filters -->
+<div class="mb-8 flex flex-col gap-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
+<div class="flex flex-col gap-4 lg:flex-row">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 pl-10 pr-4 py-2 text-sm focus:border-primary focus:ring-primary dark:text-slate-200" placeholder="Pesquisar processos por nome, dono ou categoria..." type="text"/>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="text-xs uppercase tracking-wider text-slate-400">Status:</span>
+<span>Ativo</span>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span>Inconsistência</span>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span>Categoria</span>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Grid of Processes -->
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+<!-- Process Card 1 -->
+<div class="group flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm transition-shadow hover:shadow-md">
+<div class="mb-4 flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">Logística</span>
+<h3 class="text-lg font-bold text-[#1D1C1B] group-hover:text-[#2D7CFF] transition-colors">Recebimento de Mercadorias</h3>
+</div>
+<span class="inline-flex items-center rounded-full bg-[#2ECC71]/20 px-2 py-1 text-[10px] font-bold text-[#2ECC71] uppercase">Ativo</span>
+</div>
+<div class="mb-6 space-y-3">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+<img alt="Dono do Processo" class="h-full w-full object-cover" data-alt="Avatar de um gerente de logística" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYHdgwMbfmqn74YmRE91UbC6hwU8gCHBpTYdwG5IIjW7pFb7T4H8Z4FdsO8YkPKs7YRSV04jjtCgDi7zGg3Tmj1bLf8cDXC47da-ye0DUW7WNdqOEEZkXfu07RIBrWcvfsnm6eYI2bBdD1_sBr-pE0xJlF7dHdmUGIEngvdJt6IxU_4j78nzogynXVdKpX7w_v9gIeZ6LKJV3WKPhihqvms-nPTc7M8VePnqbYu2FTns1xpCOSeWZ0Vb_ZBHmrj7j-7_Gh0hDTBdu5"/>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-slate-400 uppercase">Dono/Gestor</span>
+<span class="text-xs font-medium text-slate-700 dark:text-slate-300">Ricardo Mendes</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Última edição: 12/05/2026</span>
+</div>
+</div>
+<div class="mt-auto flex flex-col gap-2">
+<button class="w-full rounded-lg bg-primary py-2.5 text-sm font-bold text-white hover:bg-primary/90 bg-[#2D7CFF]">
+                            Iniciar Execução
+                        </button>
+<button class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 py-2 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
+                            Editar Fluxograma
+                        </button>
+</div>
+</div>
+<!-- Process Card 2 (With Inconsistency) -->
+<div class="group flex flex-col rounded-xl border border-red-200 dark:border-red-900/50 bg-white dark:bg-slate-900 p-5 shadow-sm transition-shadow hover:shadow-md">
+<div class="mb-4 flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">Vendas</span>
+<h3 class="text-lg font-bold text-[#1D1C1B] group-hover:text-[#2D7CFF] transition-colors">Onboarding de Clientes B2B</h3>
+</div>
+<span class="inline-flex items-center rounded-full bg-[#FFD166]/20 px-2 py-1 text-[10px] font-bold text-[#CC9900] uppercase">Inconsistência</span>
+</div>
+<div class="mb-6 space-y-3">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+<img alt="Dono do Processo" class="h-full w-full object-cover" data-alt="Avatar de uma gerente comercial" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfHvRG6x2d1COYZgKuOqm4wAhxAnNwryAZdqOhvjgjinkR_Y6fLqbjLtyzmB35uYkOqfBMEVzaAznLbiHeZUf4aV1m8-Mt6HPpOy9KxzT31jShMDvBUpRa1j9kNZ3TzYJXFeW6o5af_yQDmaHZO7zVP_XfkotL_vW8JuTs7AWpy1BAf6_2YFEcAjHFUe02BXRuhyZ2YAIWRT8JNRqeoahw_fpZkEbT9l0ZsgIbLl9CxszLEKH-0LRxcBVNIr61F02T1T4gH4vRly-7"/>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-slate-400 uppercase">Dono/Gestor</span>
+<span class="text-xs font-medium text-slate-700 dark:text-slate-300">Ana Paula Silva</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Última edição: 08/05/2026</span>
+</div>
+<div class="flex items-center gap-2 rounded-lg bg-red-50 dark:bg-red-900/20 p-2 text-[11px] font-medium text-red-600 dark:text-red-400 border border-red-100 dark:border-red-900/30">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span>Faltando aprovação do financeiro no passo 4.</span>
+</div>
+</div>
+<div class="mt-auto flex flex-col gap-2">
+<button class="w-full cursor-not-allowed rounded-lg bg-slate-200 dark:bg-slate-800 py-2.5 text-sm font-bold text-slate-400 dark:text-slate-600" disabled="">
+                            Iniciar Execução
+                        </button>
+<button class="w-full rounded-lg border border-primary/30 bg-primary/5 py-2 text-sm font-semibold text-primary hover:bg-primary/10">
+                            Resolver Inconsistência
+                        </button>
+</div>
+</div>
+<!-- Process Card 3 -->
+<div class="group flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm transition-shadow hover:shadow-md">
+<div class="mb-4 flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">RH</span>
+<h3 class="text-lg font-bold text-[#1D1C1B] group-hover:text-[#2D7CFF] transition-colors">Solicitação de Férias</h3>
+</div>
+<span class="inline-flex items-center rounded-full bg-[#2ECC71]/20 px-2 py-1 text-[10px] font-bold text-[#2ECC71] uppercase">Ativo</span>
+</div>
+<div class="mb-6 space-y-3">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+<img alt="Dono do Processo" class="h-full w-full object-cover" data-alt="Avatar de um diretor de RH" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDERcrGyxqOGTWX4fjnbb3OOPlm9QG-RBbatodWcti71zI6ZhyhvhaQOfzxFJncC8CLFwsf_Gi_QtcrQ2YyQMmpWWuiVEWzQtlxSgduQk3S2Jsf9sbQfNmKXTnIPs8wVFLJ2-blujoSfyazbvJUW-WR_funbYnX3K2W7pzvYW0qQwF1GTQpjWwzwo9-Yz90sTw_xmZbmcmn6TFvpPEiGfU2koUnJ6TaaIXHlizg8O11I-aNoN2zfx7nxbXu0c0hJaIYtrNqs-ytBx4w"/>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-slate-400 uppercase">Dono/Gestor</span>
+<span class="text-xs font-medium text-slate-700 dark:text-slate-300">Marcos Oliveira</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Última edição: 10/05/2026</span>
+</div>
+</div>
+<div class="mt-auto flex flex-col gap-2">
+<button class="w-full rounded-lg bg-primary py-2.5 text-sm font-bold text-white hover:bg-primary/90 bg-[#2D7CFF]">
+                            Iniciar Execução
+                        </button>
+<button class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 py-2 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
+                            Editar Fluxograma
+                        </button>
+</div>
+</div>
+<!-- Process Card 4 (Draft) -->
+<div class="group flex flex-col rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900/50 p-5 shadow-sm transition-shadow hover:shadow-md">
+<div class="mb-4 flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Financeiro</span>
+<h3 class="text-lg font-bold text-[#1D1C1B] group-hover:text-[#2D7CFF] transition-colors">Reembolso de Despesas</h3>
+</div>
+<span class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1 text-[10px] font-bold text-slate-500 uppercase">Rascunho</span>
+</div>
+<div class="mb-6 space-y-3">
+<div class="flex items-center gap-3 opacity-60">
+<div class="h-8 w-8 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+<img alt="Dono do Processo" class="h-full w-full object-cover" data-alt="Avatar de uma analista financeira" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt3soiG0Ub5aH6A0tOawF9nD5AjVtq16DGLJqM4Jt-owIMLZE0FzLLJWwjuuPtl50YkBKHZ22QmMF7INfZceP4xXYxiDSnssk_sbnZTyBznyQnW9jGyCyRASC8FFF6xmBcTcEShvAon2HXaK37Kr_f52JFQKWG6IwCvP8HwjaBGmxbUlZ6QKVuCPTm4pocEMkxHaZs1j2cwLGlnnAn8-FrJnkAp5E_5O5gsszk8uHKzUni1FuY31eQKa__MVESWBBIgB_RQ2ItcAJ_"/>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-slate-400 uppercase">Dono/Gestor</span>
+<span class="text-xs font-medium text-slate-700 dark:text-slate-300">Julia Vasconcelos</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Última edição: 12/05/2026</span>
+</div>
+</div>
+<div class="mt-auto flex flex-col gap-2">
+<button class="w-full cursor-not-allowed rounded-lg bg-slate-100 dark:bg-slate-800 py-2.5 text-sm font-bold text-slate-300 dark:text-slate-700" disabled="">
+                            Iniciar Execução
+                        </button>
+<button class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 py-2 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
+                            Continuar Editando
+                        </button>
+</div>
+</div>
+<!-- Create Card Placeholder -->
+<div class="flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 p-10 transition-colors hover:border-primary hover:bg-primary/5 group">
+<div class="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-sm transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-primary">add</span>
+</div>
+<span class="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-primary">Criar Novo Processo</span>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="mt-auto border-t border-slate-200 dark:border-slate-800 py-6 px-20">
+<div class="mx-auto flex max-w-7xl items-center justify-between text-xs text-slate-400">
+<p>© 2026 ProduPop - Gestão Eficiente de Processos</p>
+<div class="flex gap-4">
+<a class="hover:text-primary" href="#">Privacidade</a>
+<a class="hover:text-primary" href="#">Suporte</a>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

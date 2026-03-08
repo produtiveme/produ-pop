@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2D7CFF",
+                        "background-light": "#FFF9F3",
+                        "background-dark": "#0f1723",
+                        "neutral-900": "#1D1C1B",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1D1C1B;
+        }
+        .paper-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="dark:bg-background-dark min-h-screen font-display" style="background-color: #FFF9F3;">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar Component -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid dark:border-slate-800 bg-white dark:bg-slate-900 px-4 md:px-10 py-3 sticky top-0 z-50 border-orange-100/50">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+<div class="size-6">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path></svg>
+</div>
+<h2 class="dark:text-slate-100 text-lg font-bold leading-tight tracking-tight text-neutral-900">ProduPop</h2>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 px-3 hover:bg-slate-200 transition-colors text-neutral-900">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 px-3 hover:bg-slate-200 transition-colors text-neutral-900">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col items-center py-6 px-4">
+<div class="w-full max-w-[640px] flex flex-col gap-6">
+<!-- Discreet Progress Bar -->
+<div class="flex flex-col gap-2 px-2">
+<div class="flex justify-between items-end">
+<span class="text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider">Passo 4 de 12</span>
+<span class="text-sm font-bold">35% concluído</span>
+</div>
+<div class="h-1.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full rounded-full bg-[#2D7CFF]" style="width: 35%;"></div>
+</div>
+</div>
+<!-- Step Interface: "Paper on Table" feel -->
+<div class="bg-white dark:bg-slate-900 rounded-xl paper-shadow border dark:border-slate-800 overflow-hidden border-slate-100">
+<!-- Header of the Step -->
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<h1 class="dark:text-slate-100 text-2xl font-bold leading-tight text-neutral-900">Verificar NF</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-2 text-sm">Certifique-se de que todos os dados da nota fiscal conferem com o pedido físico e as especificações da carga.</p>
+</div>
+<!-- Instruction Image Container -->
+<div class="w-full aspect-video bg-slate-100 dark:bg-slate-800 relative">
+<div class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 p-8">
+<img alt="Invoice verification process illustration" class="w-full h-full object-cover" data-alt="Exemplo de conferência de nota fiscal sobre mesa" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSMz7Xmh-oR8ENntxrv2eK-xXIuE5SMNRw1S6C_VNrt5Cm5Uw5nF-p21P89l-UE4Lw0FnrbM56DI6BRsb3a5HCvuAzgUeP3wSAZpEwRQcCpoxbU4h6rxwgFjei4axAwrTYfYgIvjq47z5XtDOa1shtgNLmGsILJQ5iTeFvp4NQ48PXyQdcCLxQeqnezd3GpHLyWXTfIsjSva2sH7DtwB5q1nJailhBKryIV8unxeg5ZZQAEcU1GoP67wrYSPsLsNwqjLV9zB6gRR06"/>
+</div>
+</div>
+<!-- Detailed Instructions & Checklist -->
+<div class="p-6 flex flex-col gap-6">
+<div>
+<h3 class="dark:text-slate-100 text-sm font-bold uppercase tracking-wide mb-3 text-neutral-900">Instruções de Execução</h3>
+<p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed text-neutral-900">
+                                    Localize o número da chave de acesso na DANFE e valide se o CNPJ do destinatário corresponde à unidade <strong>ProduPop Sul (02.455.000/0001-90)</strong>. 
+                                    A data de emissão não pode ser superior a 5 dias úteis da data de recebimento atual.
+                                </p>
+</div>
+<div class="flex flex-col gap-3">
+<h3 class="dark:text-slate-100 text-sm font-bold uppercase tracking-wide text-neutral-900">Checklist Obrigatório</h3>
+<label class="flex items-center gap-3 p-4 rounded-lg border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 cursor-pointer group hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<input class="size-5 rounded border-slate-300 dark:border-slate-600 focus:ring-primary" type="checkbox"/>
+<span class="text-slate-700 dark:text-slate-200 font-medium text-neutral-900">Conferi o CNPJ do Destinatário</span>
+</label>
+<label class="flex items-center gap-3 p-4 rounded-lg border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 cursor-pointer group hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<input class="size-5 rounded border-slate-300 dark:border-slate-600 focus:ring-primary" type="checkbox"/>
+<span class="text-slate-700 dark:text-slate-200 font-medium text-neutral-900">Validei a data de emissão da NF</span>
+</label>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-6 bg-slate-50 dark:bg-slate-800/30 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-4">
+<button class="w-full text-white font-bold py-4 px-6 rounded-lg text-lg flex items-center justify-center gap-2 hover:bg-primary/90 transition-all active:scale-[0.98] bg-[#2D7CFF]">
+                                Avançar
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="w-full flex items-center justify-center py-2 px-4 text-red-600 dark:text-red-400 font-medium text-sm gap-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors">
+<span class="material-symbols-outlined text-[18px]">report</span>
+                                Reportar Erro na Documentação
+                            </button>
+</div>
+</div>
+<!-- Footnote -->
+<p class="text-center text-slate-400 text-xs mb-10">
+                        Ambiente de Produção Controlado • ProduPop OS #8821
+                    </p>
+</div>
+</main>
+</div>
+</div>
+</body></html>

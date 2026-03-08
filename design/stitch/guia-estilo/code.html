@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ProduPop - Design System</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            produpop: {
+              blue: '#2D7CFF',
+              success: '#2ECC71',
+              warning: '#FFD166',
+              danger: '#ef4444',
+              surface: '#FFF9F3',
+              border: '#E8E2D9',
+              text: {
+                primary: '#1D1C1B',
+                secondary: '#5C5854'
+              }
+            }
+          },
+          borderRadius: {
+            'produpop': '8px',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-shadows">
+    .shadow-soft {
+      box-shadow: 0 2px 12px -2px rgba(29, 28, 27, 0.08), 0 4px 6px -2px rgba(29, 28, 27, 0.04);
+    }
+  </style>
+</head>
+<body class="bg-produpop-surface text-produpop-text-primary min-h-screen font-sans">
+<!-- BEGIN: Navigation -->
+<nav class="bg-white border-b border-produpop-border sticky top-0 z-50 px-8 py-4 flex justify-between items-center shadow-sm">
+<div class="flex items-center gap-3">
+<div class="bg-produpop-blue p-2 rounded-produpop">
+<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<span class="text-xl font-bold tracking-tight">ProduPop <span class="text-produpop-text-secondary font-normal text-sm">Design System</span></span>
+</div>
+<div class="flex gap-6 text-sm font-medium text-produpop-text-secondary">
+<a class="hover:text-produpop-blue" href="#">Dashboard</a>
+<a class="hover:text-produpop-blue" href="#">Biblioteca</a>
+<a class="text-produpop-blue border-b-2 border-produpop-blue pb-1" href="#">Style Guide</a>
+</div>
+</nav>
+<!-- END: Navigation -->
+<main class="max-w-7xl mx-auto px-8 py-12">
+<!-- BEGIN: Header -->
+<header class="mb-12">
+<h1 class="text-4xl font-bold mb-2">Guia de Estilo</h1>
+<p class="text-produpop-text-secondary text-lg">Princípios visuais e componentes fundamentais para a plataforma de automação ProduPop.</p>
+</header>
+<!-- END: Header -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+<!-- BEGIN: Sidebar Navigation -->
+<aside class="lg:col-span-1 space-y-2">
+<nav class="sticky top-24 shadow-sm">
+<p class="text-xs font-bold text-produpop-text-secondary uppercase tracking-wider mb-4">Sumário</p>
+<ul class="space-y-1">
+<li><a class="block px-3 py-2 text-produpop-blue font-medium bg-blue-50 rounded-produpop" href="#cores">Paleta de Cores</a></li>
+<li><a class="block px-3 py-2 hover:bg-white rounded-produpop transition" href="#tipografia">Tipografia</a></li>
+<li><a class="block px-3 py-2 hover:bg-white rounded-produpop transition" href="#botoes">Botões &amp; Inputs</a></li>
+<li><a class="block px-3 py-2 hover:bg-white rounded-produpop transition" href="#icones">Ícones &amp; Badges</a></li>
+<li><a class="block px-3 py-2 hover:bg-white rounded-produpop transition" href="#cards">Cards de Processo</a></li>
+</ul>
+</nav>
+</aside>
+<!-- END: Sidebar Navigation -->
+<div class="lg:col-span-3 space-y-20">
+<!-- BEGIN: Color Palette Section -->
+<section data-purpose="color-palette" id="cores">
+<h2 class="text-2xl font-bold mb-6 pb-2 border-b border-produpop-border">1. Paleta de Cores</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Brand -->
+<div class="space-y-2">
+<div class="h-24 bg-produpop-blue rounded-produpop shadow-soft"></div>
+<p class="font-semibold text-sm">Primária (Brand)</p>
+<p class="text-xs text-produpop-text-secondary">#2D7CFF</p>
+</div>
+<!-- Success -->
+<div class="space-y-2">
+<div class="h-24 bg-produpop-success rounded-produpop shadow-soft"></div>
+<p class="font-semibold text-sm">Sucesso</p>
+<p class="text-xs text-produpop-text-secondary">#2ECC71</p>
+</div>
+<!-- Warning -->
+<div class="space-y-2">
+<div class="h-24 bg-produpop-warning rounded-produpop shadow-soft"></div>
+<p class="font-semibold text-sm">Inconsistência</p>
+<p class="text-xs text-produpop-text-secondary">#FFD166</p>
+</div>
+<!-- Danger -->
+<div class="space-y-2">
+<div class="h-24 bg-produpop-danger rounded-produpop shadow-soft"></div>
+<p class="font-semibold text-sm">Erro / Reportado</p>
+<p class="text-xs text-produpop-text-secondary">#ef4444</p>
+</div>
+</div>
+<div class="grid grid-cols-5 gap-4 mt-8">
+<div class="space-y-2">
+<div class="h-12 bg-slate-900 rounded-produpop"></div>
+<p class="text-[10px] font-mono">#0f172a</p>
+</div>
+<div class="space-y-2">
+<div class="h-12 bg-slate-600 rounded-produpop"></div>
+<p class="text-[10px] font-mono">#475569</p>
+</div>
+<div class="space-y-2">
+<div class="h-12 bg-slate-400 rounded-produpop"></div>
+<p class="text-[10px] font-mono">#94a3b8</p>
+</div>
+<div class="space-y-2">
+<div class="h-12 bg-slate-200 rounded-produpop"></div>
+<p class="text-[10px] font-mono">#e2e8f0</p>
+</div>
+<div class="space-y-2">
+<div class="h-12 bg-slate-50 border border-produpop-border rounded-produpop"></div>
+<p class="text-[10px] font-mono">#f8fafc</p>
+</div>
+</div>
+</section>
+<!-- END: Color Palette Section -->
+<!-- BEGIN: Typography Section -->
+<section data-purpose="typography-guide" id="tipografia">
+<h2 class="text-2xl font-bold mb-6 pb-2 border-b border-produpop-border">2. Tipografia (Inter)</h2>
+<div class="space-y-8 bg-white p-8 rounded-produpop shadow-soft shadow-sm">
+<div class="flex items-baseline gap-8">
+<span class="w-32 text-xs text-produpop-text-secondary font-mono">H1 / Bold</span>
+<h1 class="text-3xl font-bold">Título da Página (30px)</h1>
+</div>
+<div class="flex items-baseline gap-8">
+<span class="w-32 text-xs text-produpop-text-secondary font-mono">H2 / Bold</span>
+<h2 class="text-2xl font-bold">Subtítulo de Seção (24px)</h2>
+</div>
+<div class="flex items-baseline gap-8">
+<span class="w-32 text-xs text-produpop-text-secondary font-mono">Large / Medium</span>
+<p class="text-lg font-medium">Texto de introdução ou destaque (18px)</p>
+</div>
+<div class="flex items-baseline gap-8">
+<span class="w-32 text-xs text-produpop-text-secondary font-mono">Base / Regular</span>
+<p class="text-base">Corpo de texto padrão para leitura (16px). Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+<div class="flex items-baseline gap-8">
+<span class="w-32 text-xs text-produpop-text-secondary font-mono">Small / UI</span>
+<p class="text-sm">Legendas, rótulos de campos e informações auxiliares (14px).</p>
+</div>
+</div>
+</section>
+<!-- END: Typography Section -->
+<!-- BEGIN: UI Components Section -->
+<section data-purpose="ui-components" id="botoes">
+<h2 class="text-2xl font-bold mb-6 pb-2 border-b border-produpop-border">3. Componentes de UI</h2>
+<div class="grid md:grid-cols-2 gap-12">
+<!-- Buttons -->
+<div class="space-y-6">
+<h3 class="font-semibold text-produpop-text-secondary mb-4 uppercase text-xs tracking-widest">Botões</h3>
+<div class="flex flex-col gap-4">
+<button class="bg-produpop-blue text-white px-6 py-2.5 rounded-produpop font-semibold hover:bg-blue-700 transition w-full md:w-max">Botão Primário</button>
+<button class="bg-slate-100 text-produpop-text-primary px-6 py-2.5 rounded-produpop font-semibold hover:bg-slate-200 transition w-full md:w-max">Botão Secundário</button>
+<button class="border border-produpop-border text-produpop-blue px-6 py-2.5 rounded-produpop font-semibold hover:bg-blue-50 transition w-full md:w-max">Botão Outlined</button>
+<button class="bg-white border border-produpop-danger text-produpop-danger px-6 py-2.5 rounded-produpop font-semibold hover:bg-red-50 transition w-full md:w-max shadow-sm">Ação de Perigo</button>
+</div>
+</div>
+<!-- Inputs -->
+<div class="space-y-6">
+<h3 class="font-semibold text-produpop-text-secondary mb-4 uppercase text-xs tracking-widest">Campos de Entrada</h3>
+<div class="space-y-4">
+<div>
+<label class="block text-xs font-bold text-produpop-text-secondary mb-1">NOME DO PROCESSO</label>
+<input class="w-full border-produpop-border rounded-produpop shadow-sm focus:ring-produpop-blue focus:border-produpop-blue" placeholder="Ex: Onboarding de Clientes" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-produpop-text-secondary mb-1">DESCRIÇÃO</label>
+<textarea class="w-full border-produpop-border rounded-produpop shadow-sm focus:ring-produpop-blue focus:border-produpop-blue" placeholder="Descreva o fluxo..." rows="3"></textarea>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: UI Components Section -->
+<!-- BEGIN: Badges & Icons -->
+<section class="space-y-8" id="icones">
+<div class="grid md:grid-cols-2 gap-12">
+<!-- Badges -->
+<div class="space-y-6">
+<h3 class="font-semibold text-produpop-text-secondary mb-4 uppercase text-xs tracking-widest">Badges / Tags</h3>
+<div class="flex flex-wrap gap-3">
+<span class="px-2.5 py-1 rounded-full bg-green-100 text-green-700 text-[10px] font-bold uppercase tracking-wider">Ativo</span>
+<span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#FFF4D9] text-[#B38B2D]">Inconsistência</span>
+<span class="px-2.5 py-1 rounded-full bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-wider">Concluído</span>
+<span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-500 text-[10px] font-bold uppercase tracking-wider">Rascunho</span>
+<span class="px-2.5 py-1 rounded-full bg-red-100 text-red-700 text-[10px] font-bold uppercase tracking-wider">Reportado</span>
+</div>
+</div>
+<!-- Icons -->
+<div class="space-y-6">
+<h3 class="font-semibold text-produpop-text-secondary mb-4 uppercase text-xs tracking-widest">Simbologia Core</h3>
+<div class="flex gap-6">
+<div class="text-produpop-blue bg-white p-3 rounded-produpop shadow-soft shadow-sm" title="Dashboard">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.001 8.001 0 0117.748 8H12V2.252z"></path></svg>
+</div>
+<div class="text-produpop-text-secondary bg-white p-3 rounded-produpop shadow-soft shadow-sm" title="Biblioteca">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div class="text-produpop-text-secondary bg-white p-3 rounded-produpop shadow-soft shadow-sm" title="Execuções">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" fill-rule="evenodd"></path></svg>
+</div>
+<div class="text-produpop-text-secondary bg-white p-3 rounded-produpop shadow-soft shadow-sm" title="Configurações">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Badges & Icons -->
+<!-- BEGIN: Cards Example -->
+<section data-purpose="cards-preview" id="cards">
+<h2 class="text-2xl font-bold mb-6 pb-2 border-b border-produpop-border">4. Cards de Processo</h2>
+<div class="grid md:grid-cols-2 gap-8">
+<!-- Process Card Item -->
+<div class="bg-white p-6 rounded-produpop shadow-soft border border-produpop-border shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-[10px] font-bold text-produpop-blue uppercase tracking-widest mb-1">LOGÍSTICA</p>
+<h4 class="text-lg font-bold">Recebimento de Mercadorias</h4>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-green-100 text-green-700 text-[10px] font-bold uppercase">Ativo</span>
+</div>
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgPYLmWdY0dqa2vZZnCVQ6LdPPtvl2q6v6dlcTGXGTN6QCMfOufmD7L4XJFyIu6OpmbGzr4_U0EnoMRl2h1HDLZLN2_9nVIbHszucqzJHlifncRIJStA5_JfK20SDPVmbu0IKbjLXhLyjsGl3cvIW31M70bg2XtsKsR3SpLUFrOsR0DQbocYepnTUjHLwHPAtLL_9XIxp88AJY3d-iWLBzTic66BYEx3svA5TEgzn7Id39qUM3QwUsuZ-mPrthx9hvQnrdwWCkUGG7"/>
+</div>
+<div>
+<p class="text-[10px] font-bold text-slate-400 uppercase">DONO/GESTOR</p>
+<p class="text-sm font-medium">Ricardo Mendes</p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-produpop-blue text-white py-2 rounded-produpop text-sm font-semibold">Iniciar Execução</button>
+<button class="flex-1 bg-slate-50 text-produpop-text-primary border border-produpop-border py-2 rounded-produpop text-sm font-semibold">Editar Fluxo</button>
+</div>
+</div>
+<!-- Principle explanation -->
+<div class="bg-slate-50 p-6 rounded-produpop border border-dashed border-slate-300 flex flex-col justify-center">
+<h4 class="font-bold mb-2">Princípios de Card</h4>
+<ul class="text-sm space-y-2 text-produpop-text-secondary list-disc pl-4">
+<li>Border-radius fixo de 8px (<code>rounded-produpop</code>)</li>
+<li>Sombras extremamente suaves para profundidade leve</li>
+<li>Uso de <code>uppercase</code> e <code>tracking-widest</code> em labels</li>
+<li>Contraste claro entre botões primários e secundários</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- END: Cards Example -->
+</div>
+</div>
+</main>
+<!-- BEGIN: Footer -->
+<footer class="bg-white border-t border-produpop-border py-12 mt-20 shadow-sm">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-sm text-produpop-text-secondary">
+        © 2024 ProduPop - Plataforma de Gestão de Automação
+      </div>
+<div class="flex gap-8 text-sm text-produpop-text-secondary font-medium">
+<a class="hover:text-produpop-blue" href="#">Documentação</a>
+<a class="hover:text-produpop-blue" href="#">Privacidade</a>
+<a class="hover:text-produpop-blue" href="#">Suporte</a>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+</body></html>

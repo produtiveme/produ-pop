@@ -119,7 +119,8 @@ textarea {
 .button-primary,
 .button-secondary,
 .button-outline-primary,
-.button-link-muted {
+.button-link-muted,
+.button-danger-subtle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -162,6 +163,12 @@ textarea {
   color: var(--text-muted);
   min-height: auto;
   padding: 0;
+}
+
+.button-danger-subtle {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
 }
 
 .button-primary-icon,
@@ -888,6 +895,64 @@ textarea {
   background-color: var(--surface);
 }
 
+.editor-validation-banner {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 8;
+  width: min(520px, calc(100% - 32px));
+  border-radius: 12px;
+  border: 1px solid #fecaca;
+  background: rgba(254, 242, 242, 0.96);
+  color: #991b1b;
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.editor-validation-banner strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.editor-validation-banner ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+  font-size: 0.84rem;
+}
+
+.edge-inspector {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9;
+  width: 280px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  padding: 14px;
+}
+
+.edge-inspector-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.edge-inspector label {
+  display: block;
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
 .editor-modal-overlay {
   position: fixed;
   inset: 0;
@@ -1067,7 +1132,7 @@ textarea {
 
 .checklist-row {
   display: grid;
-  grid-template-columns: 20px 20px 1fr;
+  grid-template-columns: 20px 20px 1fr auto;
   gap: 10px;
   align-items: center;
   border-radius: 10px;
@@ -1084,6 +1149,25 @@ textarea {
 
 .drag-mark {
   color: #cbd5e1;
+}
+
+.checklist-actions {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.checklist-actions button {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+}
+
+.checklist-actions button:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 .flow-placeholder {
@@ -1124,6 +1208,18 @@ textarea {
   margin-top: 10px;
 }
 
+.outcome-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.outcome-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+}
+
 .decision-pill {
   display: inline-flex;
   align-items: center;
@@ -1144,6 +1240,33 @@ textarea {
   font-weight: 800;
   text-transform: uppercase;
   font-size: 0.72rem;
+}
+
+.decision-handle-row {
+  position: absolute;
+  right: -96px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.decision-handle-label {
+  min-width: 72px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid #e2e8f0;
+  color: #94a3b8;
+  font-size: 0.64rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.decision-handle-label-connected {
+  color: var(--primary);
+  border-color: rgba(45, 124, 255, 0.28);
+  background: rgba(45, 124, 255, 0.08);
 }
 
 .modal-grid-two {
@@ -1358,6 +1481,10 @@ textarea {
 
   .editor-modal {
     max-height: calc(100vh - 32px);
+  }
+
+  .outcome-row {
+    grid-template-columns: 1fr;
   }
 
   .editor-modal-tabs {

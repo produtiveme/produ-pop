@@ -4,7 +4,9 @@ import {
   createEmptyWorkflowGraph,
   getStatusLabel,
   mockProcesses,
+  normalizeWorkflowGraph,
   type ProcessRecord,
+  validateWorkflowGraph,
   workflowGraphSchema,
 } from "@/lib/workflow";
 
@@ -25,7 +27,7 @@ function toProcessRecord(process: {
   flowData: unknown;
 }): ProcessRecord {
   const parsedGraph = workflowGraphSchema.safeParse(process.flowData);
-  const graph = parsedGraph.success ? parsedGraph.data : createEmptyWorkflowGraph();
+  const graph = parsedGraph.success ? normalizeWorkflowGraph(parsedGraph.data) : createEmptyWorkflowGraph();
   const decisionPoints = graph.nodes.filter((node) => node.type === "decision").length;
 
   return {
@@ -92,7 +94,14 @@ export async function updateProcess(input: {
   status: ProcessStatus;
   flowData: unknown;
 }) {
-  const parsedGraph = workflowGraphSchema.parse(input.flowData);
+  const parsedGraph = normalizeWorkflowGraph(workflowGraphSchema.parse(input.flowData));
+  const validation = validateWorkflowGraph(parsedGraph);
+
+  if (!validation.valid) {
+    const error = new Error("Workflow validation failed");
+    (error as Error & { details?: string[] }).details = validation.errors;
+    throw error;
+  }
 
   return db.process.update({
     where: { id: input.id },

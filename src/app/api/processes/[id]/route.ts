@@ -33,6 +33,13 @@ export async function PATCH(
       );
     }
 
+    if (error instanceof Error && "details" in error) {
+      return NextResponse.json(
+        { error: "O fluxo precisa ser corrigido antes de salvar.", details: (error as Error & { details?: string[] }).details ?? [] },
+        { status: 400 },
+      );
+    }
+
     return NextResponse.json({ error: "Falha ao salvar o processo." }, { status: 500 });
   }
 }
